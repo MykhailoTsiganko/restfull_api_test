@@ -9,7 +9,7 @@ import com.jayway.restassured.specification.RequestSpecification;
 import static com.jayway.restassured.RestAssured.given;
 
 public class RestClient {
-    public static String enviropment = "";
+    public static String enviropment = "http://petstore.swagger.io";
     public static final ContentType defaultContentType = ContentType.JSON;
     public static Headers headers;
 
