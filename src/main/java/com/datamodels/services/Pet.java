@@ -1,4 +1,4 @@
-package com.datamodels.services.petservice;
+package com.datamodels.services;
 
 import java.util.Arrays;
 

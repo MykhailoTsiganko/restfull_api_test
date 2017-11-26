@@ -1,19 +1,29 @@
-package com.datamodels.services.petservice;
+package com.datamodels.services;
 
-public class Category {
+public class Tag {
     private long id;
     private String name;
 
 
+
+    public Tag(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Category)) return false;
+        if (!(o instanceof Tag)) return false;
 
-        Category category = (Category) o;
+        Tag tag = (Tag) o;
 
-        if (getId() != category.getId()) return false;
-        return getName().equals(category.getName());
+        if (getId() != tag.getId()) return false;
+        return getName().equals(tag.getName());
     }
 
     @Override
@@ -21,11 +31,6 @@ public class Category {
         int result = (int) (getId() ^ (getId() >>> 32));
         result = 31 * result + getName().hashCode();
         return result;
-    }
-
-    public long getId() {
-
-        return id;
     }
 
     public void setId(long id) {
@@ -40,9 +45,5 @@ public class Category {
         this.name = name;
     }
 
-    public Category(long id, String name) {
 
-        this.id = id;
-        this.name = name;
-    }
 }
