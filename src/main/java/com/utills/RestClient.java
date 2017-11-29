@@ -13,7 +13,7 @@ import static com.jayway.restassured.RestAssured.given;
 public class RestClient {
     public static String enviropment = "http://petstore.swagger.io";
     public static ContentType defaultContentType = ContentType.JSON;
-    public  Headers defaultHeaders;
+    public static Headers defaultHeaders = null;
 
     static {
         Header[] headersArray = {
@@ -25,7 +25,7 @@ public class RestClient {
                 new Header("Accept-Encoding", "gzip, deflate"),
                 new Header("Accept-Language", "uk-UA,uk;q=0.9,ru;q=0.8,en-US;q=0.7,en;q=0.6")
         };
-        Headers defaultHeaders = new Headers(headersArray);
+        defaultHeaders = new Headers(headersArray);
     }
 
     private RequestSpecification requestSpecification;
@@ -40,7 +40,7 @@ public class RestClient {
     }
 
 
-    public Response post(String url, Object body,ContentType contentType) {
+    public Response post(String url, Object body, ContentType contentType) {
         return requestSpecification.contentType(contentType).body(body)
                 .when().post(url)
                 .then()
@@ -56,7 +56,7 @@ public class RestClient {
                 .extract().response();
     }
 
-    public Response delete(String url, Object body,ContentType contentType) {
+    public Response delete(String url, Object body, ContentType contentType) {
         return requestSpecification.contentType(contentType).body(body)
                 .when().delete(url)
                 .then()
@@ -93,10 +93,10 @@ public class RestClient {
                 .extract().response();
     }
 
-    public Response delete(String url,Object body, Header ...headers){
+    public Response delete(String url, Object body, Header... headers) {
         Collection<Header> collection = new ArrayList<Header>(Arrays.asList(headers));
         collection.addAll(defaultHeaders.asList());
-        Header[] requestHeaders = collection.toArray(new Header[] {});
+        Header[] requestHeaders = collection.toArray(new Header[]{});
 
         return requestSpecification.contentType(defaultContentType).headers(new Headers(requestHeaders)).body(body)
                 .when().delete(url)
@@ -105,16 +105,15 @@ public class RestClient {
     }
 
 
-
     public static ContentType getDefaultContentType() {
         return defaultContentType;
     }
 
-    public  Headers getDefaultHeaders() {
+    public Headers getDefaultHeaders() {
         return defaultHeaders;
     }
 
-    public  void setDefaultHeaders(Headers defaultHeaders) {
+    public void setDefaultHeaders(Headers defaultHeaders) {
         this.defaultHeaders = defaultHeaders;
     }
 }

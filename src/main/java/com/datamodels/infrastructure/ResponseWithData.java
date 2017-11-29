@@ -2,15 +2,15 @@ package com.datamodels.infrastructure;
 
 import com.jayway.restassured.response.Response;
 
-public class ResponseWithData<T> {
+public class ResponseWithData {
     private Response fullResponse;
-    private T responseEntity;
+    private Object responseEntity;
 
     public ResponseWithData(Response response) {
         this.fullResponse = response;
     }
 
-    public ResponseWithData(Response response,Class<T> clazz){
+    public ResponseWithData(Response response,Class clazz){
         this(response);
         this.responseEntity = response.as(clazz);
     }
@@ -23,11 +23,11 @@ public class ResponseWithData<T> {
         this.fullResponse = fullResponse;
     }
 
-    public T getResponseEntity() {
+    public Object getResponseEntity() {
         return responseEntity;
     }
 
-    public void setResponseEntity(T responseEntity) {
+    public void setResponseEntity(Object responseEntity) {
         this.responseEntity = responseEntity;
     }
 }

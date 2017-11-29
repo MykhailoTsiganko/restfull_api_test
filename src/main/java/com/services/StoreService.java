@@ -10,12 +10,12 @@ public class StoreService extends BaseService {
         this.serviceUrl = "/order";
     }
 
-    public ResponseWithData<Order> createOrder(Order order){
-        return new ResponseWithData<Order>(restClient.post(serviceUrl,order));
+    public ResponseWithData createOrder(Order order){
+        return new ResponseWithData(restClient.post(serviceUrl,order));
     }
 
-    public ResponseWithData<Order> getOrderById(long id){
-        return new ResponseWithData<Order>(restClient.get(String.format("%s/%d",serviceUrl,id)));
+    public ResponseWithData getOrderById(long id, Class clazz){
+        return new ResponseWithData(restClient.get(String.format("%s/%d",serviceUrl,id)),clazz);
     }
 
     public ResponseWithData deleteOrderById(long id){

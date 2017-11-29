@@ -28,8 +28,8 @@ public class UserService extends BaseService {
         return new ResponseWithData(restClient.get(String.format("%s/logout",serviceUrl)));
     }
 
-    public ResponseWithData<User> getUserByUserName(String username){
-        return  new ResponseWithData<User>(restClient.get(String.format("%s/%s",serviceUrl,username)));
+    public ResponseWithData getUserByUserName(String username){
+        return  new ResponseWithData(restClient.get(String.format("%s/%s",serviceUrl,username)));
     }
 
     public ResponseWithData updateUser(String username,User user) {
