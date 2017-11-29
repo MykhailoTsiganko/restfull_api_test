@@ -13,7 +13,7 @@ import static com.jayway.restassured.RestAssured.given;
 
 public class RestClient {
     private Logger logger = Logger.getLogger(RestClient.class);
-    public static String enviropment = "http://petstore.swagger.io";
+    public static String enviropment = "http://petstore.swagger.io/v2";
     public static ContentType defaultContentType = ContentType.JSON;
     public static Headers defaultHeaders = null;
 
@@ -38,12 +38,12 @@ public class RestClient {
     }
 
     public RestClient(ContentType contentType) {
-        requestSpecification = given().headers(defaultHeaders);
+        requestSpecification = given().baseUri(enviropment).headers(defaultHeaders).log().all();
     }
 
 
     public Response post(String url, Object body, ContentType contentType) {
-        return requestSpecification.contentType(contentType).body(body)
+        return given().spec(requestSpecification).contentType(contentType).body(body)
                 .when().post(url)
                 .then()
                 .extract().response();
@@ -52,28 +52,28 @@ public class RestClient {
     }
 
     public Response put(String url, Object body, ContentType contentType) {
-        return requestSpecification.contentType(contentType).body(body)
+        return given().spec(requestSpecification).contentType(contentType).body(body)
                 .when().put(url)
                 .then()
                 .extract().response();
     }
 
     public Response delete(String url, Object body, ContentType contentType) {
-        return requestSpecification.contentType(contentType).body(body)
+        return given().spec(requestSpecification).contentType(contentType).body(body)
                 .when().delete(url)
                 .then()
                 .extract().response();
     }
 
     public Response get(String url) {
-        return requestSpecification.contentType(defaultContentType).when().get(url)
+        return given().spec(requestSpecification).contentType(defaultContentType).when().get(url)
                 .then()
                 .extract().response();
 
     }
 
     public Response post(String url, Object body) {
-        return requestSpecification.contentType(defaultContentType).body(body)
+        return given().spec(requestSpecification).contentType(defaultContentType).body(body)
                 .when().post(url)
                 .then()
                 .extract().response();
@@ -82,14 +82,14 @@ public class RestClient {
     }
 
     public Response put(String url, Object body) {
-        return requestSpecification.contentType(defaultContentType).body(body)
+        return given().spec(requestSpecification).contentType(defaultContentType).body(body)
                 .when().put(url)
                 .then()
                 .extract().response();
     }
 
     public Response delete(String url, Object body) {
-        return requestSpecification.contentType(defaultContentType).body(body)
+        return given().spec(requestSpecification).contentType(defaultContentType).body(body)
                 .when().delete(url)
                 .then()
                 .extract().response();
@@ -100,7 +100,7 @@ public class RestClient {
         collection.addAll(defaultHeaders.asList());
         Header[] requestHeaders = collection.toArray(new Header[]{});
 
-        return requestSpecification.contentType(defaultContentType).headers(new Headers(requestHeaders)).body(body)
+        return given().spec(requestSpecification).contentType(defaultContentType).headers(new Headers(requestHeaders)).body(body)
                 .when().delete(url)
                 .then()
                 .extract().response();

@@ -13,7 +13,11 @@ public class UserCreateTest {
 
         UserService userService = new UserService();
 
-        ResponseWithData responseWithData = userService.createUser(user);
+        ResponseWithData responseWithData = userService.createUser(user,User.class);
+
+        User entity = (User)responseWithData.getResponseEntity();
+
+        System.out.println(entity);
 
         System.out.println(responseWithData.getFullResponse().statusCode());
 

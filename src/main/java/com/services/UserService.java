@@ -11,8 +11,9 @@ public class UserService extends BaseService {
         this.serviceUrl = "/user";
     }
 
-    public ResponseWithData createUser(User user) {
-        return new ResponseWithData(restClient.post(serviceUrl, user));
+    public ResponseWithData createUser(User user,Class clazz) {
+
+        return new ResponseWithData(restClient.post(serviceUrl, user),clazz);
     }
 
     public ResponseWithData createUsers(User[] users) {

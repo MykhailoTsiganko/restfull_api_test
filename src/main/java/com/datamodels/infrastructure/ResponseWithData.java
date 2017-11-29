@@ -12,7 +12,7 @@ public class ResponseWithData {
 
     public ResponseWithData(Response response,Class clazz){
         this(response);
-        this.responseEntity = response.as(clazz);
+        this.responseEntity = response.body().as(clazz);
     }
 
     public Response getFullResponse() {
