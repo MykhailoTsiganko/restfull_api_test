@@ -16,7 +16,7 @@ public class PetService extends BaseService {
     }
 
     public ResponseWithData createPet(Pet pet, Class clazz) {
-        return new ResponseWithData<Pet>(restClient.post(serviceUrl, pet), clazz);
+        return new ResponseWithData(restClient.post(serviceUrl, pet), clazz);
     }
 
     public ResponseWithData updatePet(Pet pet, Class clazz) {
@@ -40,7 +40,7 @@ public class PetService extends BaseService {
                 null, new Header("api_key", apiKey)));
     }
 
-    public ResponseWithData<ApiResponse> uploadPetImageById(long id, String metaData, Image image) {
-        return new ResponseWithData<ApiResponse>(restClient.post(String.format("%s/%d/uploadImage", serviceUrl, id), image, ContentType.BINARY));
+    public ResponseWithData uploadPetImageById(long id, String metaData, Image image) {
+        return new ResponseWithData(restClient.post(String.format("%s/%d/uploadImage", serviceUrl, id), image, ContentType.BINARY));
     }
 }

@@ -5,12 +5,14 @@ import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Headers;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import org.apache.log4j.Logger;
 
 import java.util.*;
 
 import static com.jayway.restassured.RestAssured.given;
 
 public class RestClient {
+    private Logger logger = Logger.getLogger(RestClient.class);
     public static String enviropment = "http://petstore.swagger.io";
     public static ContentType defaultContentType = ContentType.JSON;
     public static Headers defaultHeaders = null;
