@@ -28,8 +28,8 @@
         </dependency>
         <dependency>
             <groupId>org.easetech</groupId>
-            <artifactId>easytest</artifactId>
-            <version>0.6.2</version>
+            <artifactId>easytest-core</artifactId>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
