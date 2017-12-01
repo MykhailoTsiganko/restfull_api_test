@@ -1,22 +1,21 @@
 package com.datamodels.services;
 
-import java.time.LocalDateTime;
 
 public class Order {
      private long id;
      private long petId;
      private long quantity;
-     private LocalDateTime time;
+     private String shipDate;
      private String status;
-     private boolean complite;
+     private boolean complete;
 
-     public Order(long id, long petId, long quantity, LocalDateTime time, String status, boolean complite) {
+     public Order(long id, long petId, long quantity, String time, String status, boolean complite) {
           this.id = id;
           this.petId = petId;
           this.quantity = quantity;
-          this.time = time;
+          this.shipDate = time;
           this.status = status;
-          this.complite = complite;
+          this.complete = complite;
      }
 
      public long getId() {
@@ -43,12 +42,12 @@ public class Order {
           this.quantity = quantity;
      }
 
-     public LocalDateTime getTime() {
-          return time;
+     public String getShipDate() {
+          return shipDate;
      }
 
-     public void setTime(LocalDateTime time) {
-          this.time = time;
+     public void setShipDate(String shipDate) {
+          this.shipDate = shipDate;
      }
 
      public String getStatus() {
@@ -59,11 +58,11 @@ public class Order {
           this.status = status;
      }
 
-     public boolean isComplite() {
-          return complite;
+     public boolean isComplete() {
+          return complete;
      }
 
-     public void setComplite(boolean complite) {
-          this.complite = complite;
+     public void setComplete(boolean complete) {
+          this.complete = complete;
      }
 }

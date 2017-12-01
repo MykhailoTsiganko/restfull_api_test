@@ -7,11 +7,11 @@ import com.datamodels.services.Order;
 public class StoreService extends BaseService {
     public StoreService() {
         super();
-        this.serviceUrl = "/order";
+        this.serviceUrl = "/store/order";
     }
 
-    public ResponseWithData createOrder(Order order){
-        return new ResponseWithData(restClient.post(serviceUrl,order));
+    public ResponseWithData createOrder(Order order,Class clazz){
+        return new ResponseWithData(restClient.post(serviceUrl,order),clazz);
     }
 
     public ResponseWithData getOrderById(long id, Class clazz){
