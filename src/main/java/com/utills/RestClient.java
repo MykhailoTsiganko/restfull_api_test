@@ -38,7 +38,7 @@ public class RestClient {
     }
 
     public RestClient(ContentType contentType) {
-        requestSpecification = given().baseUri(enviropment).headers(defaultHeaders).log().all();
+        requestSpecification = given().baseUri(enviropment).headers(defaultHeaders);
     }
 
 
