@@ -1,7 +1,7 @@
 package com.services;
 
 import com.datamodels.infrastructure.ResponseWithData;
-import com.datamodels.services.User;
+import com.datamodels.models.User;
 
 public class UserService extends BaseService {
     public UserService() {
