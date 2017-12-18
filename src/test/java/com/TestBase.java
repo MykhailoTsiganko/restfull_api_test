@@ -5,6 +5,9 @@ import com.datamodels.converters.OrderConverter;
 import com.datamodels.converters.PetConverter;
 import com.datamodels.converters.UserConverter;
 import io.qameta.allure.Attachment;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import org.easetech.easytest.annotation.Converters;
 import org.easetech.easytest.annotation.Display;
 import org.easetech.easytest.runner.DataDrivenTestRunner;
@@ -14,7 +17,6 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @RunWith(DataDrivenTestRunner.class)
@@ -22,21 +24,55 @@ import java.nio.file.Paths;
 @Display(fields = "description")
 public class TestBase {
 
+    Logger LOGGER = Logger.getRootLogger();
+    ThreadLocal<String> filePath = new ThreadLocal<>();
+    ThreadLocal<FileAppender> fileAppender = new ThreadLocal<>();
+
     @Before
     public void setUpLogger() {
+//        FileAppender fileAppender = (FileAppender) Logger.getRootLogger().getAppender("FILE");
+        filePath.set(String.format("test%d%d", Thread.currentThread().getId(), System.currentTimeMillis()));
+//        File file = new File(String.format("log/%s.txt", filePath.get()));
+//        try {
+//            file.createNewFile();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            fileAppender.setFile(String.format("log/%s.txt", filePath), true, true, 1024);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        LOGGER.addAppender(fileAppender);
+
+        fileAppender.set(new FileAppender());
+        fileAppender.get().setFile(String.format("log/%s.txt", filePath.get()));
+        fileAppender.get().setLayout(new PatternLayout());
+        fileAppender.get().activateOptions();
+
+        LOGGER.setAdditivity(false);
+        LOGGER.addAppender(fileAppender.get());
 
     }
 
     @Attachment("Logs")
-    public static byte[] someAtt() throws IOException {
-       return Files.readAllBytes(Paths.get("log/log.out"));
+    public byte[] addLogFileToReport() throws IOException {
+        LOGGER.removeAppender(fileAppender.get());
+//        FileAppender fileAppender = (FileAppender) Logger.getRootLogger().getAppender("FILE");
+//        try {
+//            fileAppender.setFile("log/log.out", true, true, 1024);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        LOGGER.addAppender(fileAppender);
+        return Files.readAllBytes(Paths.get(String.format("log/%s.txt", filePath.get())));
     }
 
 
     @After
     public void finish() {
         try {
-            someAtt();
+            addLogFileToReport();
         } catch (IOException e) {
             e.printStackTrace();
         }
