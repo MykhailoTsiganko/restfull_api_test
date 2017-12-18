@@ -1,4 +1,4 @@
-package com.datamodels.services;
+package com.datamodels.models;
 
 
 public class User {

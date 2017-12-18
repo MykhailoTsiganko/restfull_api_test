@@ -1,6 +1,6 @@
-package com.converters;
+package com.datamodels.converters;
 
-import com.datamodels.services.ApiResponse;
+import com.datamodels.models.ApiResponse;
 import com.google.gson.Gson;
 import org.easetech.easytest.converter.AbstractConverter;
 

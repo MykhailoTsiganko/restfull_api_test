@@ -1,17 +1,25 @@
 package com.servicestests;
 
+import com.TestBase;
 import com.datamodels.infrastructure.ResponseWithData;
-import com.datamodels.services.Order;
+import com.datamodels.models.Order;
 import com.services.StoreService;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.easetech.easytest.annotation.DataLoader;
-import org.easetech.easytest.annotation.Parallel;
+import org.easetech.easytest.annotation.Display;
 import org.easetech.easytest.loader.LoaderType;
+import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 @DataLoader(filePaths = {"src/test/java/com/testdata/CreateOrder.xls"}, loaderType = LoaderType.EXCEL, writeData = false)
-@Parallel(threads = 1)
+@Display(fields = "description")
+@DisplayName("Create order test")
+//@Parallel(threads = 10)
 public class OrderCreateTest extends TestBase {
+    //@DisplayName("Valid data")
     @Test
     public void createOrderValidData(Order order) {
 
@@ -25,7 +33,7 @@ public class OrderCreateTest extends TestBase {
 
         assertEquals(entity,order);
     }
-
+   // @Description("Invalid data")
     public void createOrderInvalidData(Order order) {
 
         StoreService storeService = new StoreService();
@@ -35,6 +43,7 @@ public class OrderCreateTest extends TestBase {
         Order entity = (Order)responseWithData.getResponseEntity();
 
         assertEquals(responseWithData.getFullResponse().statusCode(),400);
+
     }
 
 }

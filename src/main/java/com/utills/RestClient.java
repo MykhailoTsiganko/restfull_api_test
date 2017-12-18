@@ -1,5 +1,7 @@
 package com.utills;
 
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.config.LogConfig;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Headers;
@@ -38,7 +40,8 @@ public class RestClient {
     }
 
     public RestClient(ContentType contentType) {
-        requestSpecification = given().baseUri(enviropment).headers(defaultHeaders);
+        LogFilter logFilter = new LogFilter();
+        requestSpecification = given().baseUri(enviropment).headers(defaultHeaders).filters(logFilter);
     }
 
 

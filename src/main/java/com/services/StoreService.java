@@ -1,8 +1,7 @@
 package com.services;
 
 import com.datamodels.infrastructure.ResponseWithData;
-import com.datamodels.services.ApiResponse;
-import com.datamodels.services.Order;
+import com.datamodels.models.Order;
 
 public class StoreService extends BaseService {
     public StoreService() {

@@ -1,8 +1,7 @@
 package com.services;
 
 import com.datamodels.infrastructure.ResponseWithData;
-import com.datamodels.services.ApiResponse;
-import com.datamodels.services.Pet;
+import com.datamodels.models.Pet;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Header;
 

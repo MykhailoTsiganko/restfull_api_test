@@ -1,4 +1,4 @@
-package com.datamodels.services;
+package com.datamodels.models;
 
 import java.util.Arrays;
 
