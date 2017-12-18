@@ -30,26 +30,11 @@ public class TestBase {
 
     @Before
     public void setUpLogger() {
-//        FileAppender fileAppender = (FileAppender) Logger.getRootLogger().getAppender("FILE");
         filePath.set(String.format("test%d%d", Thread.currentThread().getId(), System.currentTimeMillis()));
-//        File file = new File(String.format("log/%s.txt", filePath.get()));
-//        try {
-//            file.createNewFile();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            fileAppender.setFile(String.format("log/%s.txt", filePath), true, true, 1024);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        LOGGER.addAppender(fileAppender);
-
         fileAppender.set(new FileAppender());
         fileAppender.get().setFile(String.format("log/%s.txt", filePath.get()));
         fileAppender.get().setLayout(new PatternLayout());
         fileAppender.get().activateOptions();
-
         LOGGER.setAdditivity(false);
         LOGGER.addAppender(fileAppender.get());
 
@@ -58,13 +43,6 @@ public class TestBase {
     @Attachment("Logs")
     public byte[] addLogFileToReport() throws IOException {
         LOGGER.removeAppender(fileAppender.get());
-//        FileAppender fileAppender = (FileAppender) Logger.getRootLogger().getAppender("FILE");
-//        try {
-//            fileAppender.setFile("log/log.out", true, true, 1024);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        LOGGER.addAppender(fileAppender);
         return Files.readAllBytes(Paths.get(String.format("log/%s.txt", filePath.get())));
     }
 

@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 @Parallel(threads = 1)
 public class OrderCreateTest extends TestBase {
 
-    //@DisplayName("Valid data")
     @Test
     public void createOrderValidData(Order order) {
 
@@ -36,7 +35,6 @@ public class OrderCreateTest extends TestBase {
 
     }
 
-    // @Description("Invalid data")
     public void createOrderInvalidData(Order order) {
 
         StoreService storeService = new StoreService();
@@ -46,7 +44,5 @@ public class OrderCreateTest extends TestBase {
         Order entity = (Order) responseWithData.getResponseEntity();
 
         assertEquals(responseWithData.getFullResponse().statusCode(), 400);
-
     }
-
 }
