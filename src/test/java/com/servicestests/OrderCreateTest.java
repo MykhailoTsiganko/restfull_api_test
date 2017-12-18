@@ -19,10 +19,9 @@ import static org.junit.Assert.assertEquals;
 @DisplayName("Create order test")
 //@Parallel(threads = 10)
 public class OrderCreateTest extends TestBase {
-    @Description("Valid data")
+    //@DisplayName("Valid data")
     @Test
     public void createOrderValidData(Order order) {
-        someAtt();
 
         StoreService storeService = new StoreService();
 
@@ -34,9 +33,8 @@ public class OrderCreateTest extends TestBase {
 
         assertEquals(entity,order);
     }
-    @Description("Invalid data")
+   // @Description("Invalid data")
     public void createOrderInvalidData(Order order) {
-        someAtt();
 
         StoreService storeService = new StoreService();
 
@@ -46,17 +44,6 @@ public class OrderCreateTest extends TestBase {
 
         assertEquals(responseWithData.getFullResponse().statusCode(),400);
 
-    }
-
-    @Attachment("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    public static String someAtt(){
-        return "petro-------------------------------------------------------------------------------------------------";
-    }
-
-
-    @After
-    public void finish(){
-        someAtt();
     }
 
 }
