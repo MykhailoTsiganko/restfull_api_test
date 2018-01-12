@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 @DataLoader(filePaths = {"src/test/java/com/testdata/CreateOrder.xls"}, loaderType = LoaderType.EXCEL, writeData = false)
 @Display(fields = "description")
 @DisplayName("Create order test")
-@Parallel(threads = 1)
+@Parallel(threads = 6)
 public class OrderCreateTest extends TestBase {
 
     @Test

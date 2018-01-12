@@ -4,6 +4,7 @@ import com.datamodels.converters.ApiResponseConverter;
 import com.datamodels.converters.OrderConverter;
 import com.datamodels.converters.PetConverter;
 import com.datamodels.converters.UserConverter;
+import com.utills.FileThreadAppender;
 import io.qameta.allure.Attachment;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
@@ -31,7 +32,7 @@ public class TestBase {
     @Before
     public void setUpLogger() {
         filePath.set(String.format("test%d%d", Thread.currentThread().getId(), System.currentTimeMillis()));
-        fileAppender.set(new FileAppender());
+        fileAppender.set(new FileThreadAppender());
         fileAppender.get().setFile(String.format("log/%s.txt", filePath.get()));
         fileAppender.get().setLayout(new PatternLayout());
         fileAppender.get().activateOptions();

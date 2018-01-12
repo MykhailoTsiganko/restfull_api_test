@@ -13,7 +13,7 @@ import org.easetech.easytest.loader.LoaderType;
 import org.junit.Test;
 import static org.junit.Assert.*;
 @DataLoader(filePaths = {"src/test/java/com/testdata/CreateOrder.xls"}, loaderType = LoaderType.EXCEL, writeData = false)
-@Parallel(threads = 10)
+@Parallel(threads = 1)
 @Display(fields = "description")
 @DisplayName("Create user test")
 public class UserCreateTest extends TestBase {
