@@ -1,7 +1,9 @@
 package com.datamodels.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement
 public class Pet {
     private long id;
     private Category category;

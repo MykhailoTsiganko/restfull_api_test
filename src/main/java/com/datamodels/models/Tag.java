@@ -1,5 +1,8 @@
 package com.datamodels.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Tag {
     private long id;
     private String name;
